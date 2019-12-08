@@ -42,6 +42,13 @@ typedef enum{
 	ZA_500k_ohm = MCP4725_PD1 | MCP4725_PD0
 }mcp4725_pdwn_imp_t;
 
+
+typedef struct{
+    uint8_t address,
+    mcp4725_pdwn_imp_t power_down_mode,
+    u8_fptr_u8_pu8_u8 i2c_tx,
+}mcp74725_t;
+
 #if 0
 void mcp4725_register_i2c_start(callback_1_t start);
 void mcp4725_regsiter_i2c_write(callback_1_t write);
