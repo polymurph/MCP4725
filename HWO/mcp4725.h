@@ -11,9 +11,7 @@
 #define MCP4725_H_
 #include <stdint.h>
 
-#define MCP4725_A0_BIT 0b00000010
-#define MCP4725_ADDRESS_MASK 0b00000010 
-#define MCP4725_ADDRESS_BASE 0b11000100
+
 //#define MCP4725_ADDRESS (MCP4725_ADDRESS_BASE | MCP4725_A0_BIT)
 
 #if 0
@@ -37,23 +35,33 @@ enum{
 
 typedef enum{
 	NORMAL_MODE = 0,
-	ZA_1k_ohm = MCP4725_PD0,
-	ZA_100k_ohm = MCP4725_PD1,
-	ZA_500k_ohm = MCP4725_PD1 | MCP4725_PD0
+	ZA_1k_ohm = 0x10,
+	ZA_100k_ohm = 0x20,
+	ZA_500k_ohm = 0x30
 }mcp4725_pdwn_imp_t;
 
-
+// mcp4725 class
 typedef struct{
     uint8_t address,
     mcp4725_pdwn_imp_t power_down_mode,
     u8_fptr_u8_pu8_u8 i2c_tx,
-}mcp74725_t;
+}mcp4725_t;
 
 #if 0
 void mcp4725_register_i2c_start(callback_1_t start);
 void mcp4725_regsiter_i2c_write(callback_1_t write);
 void mcp4725_register_i2c_stop(callback_t stop);
 #endif
+
+void mcp4725_write_DAC(const mcp4725_t* device, uint16_t value);
+
+void mcp4725_write_DAC_and_EEPROM(const mcp4725_t* device, uint16_t value);
+
+void mcp4725_set_powerdown_impedance(mcp4725_t* device, mcp4725_pdwn_imp_t impedance);
+
+
+
+#if old
 
 void mcp4725_init(u8_fptr_u8_pu8_u8 i2c_tx);
 
@@ -62,6 +70,8 @@ void mcp4725_write_DAC(uint8_t address, uint16_t data);
 void mcp4725_eeprom_write(uint8_t address, uint16_t data);
 
 void mcp4725_set_powerdown_impedance(mcp4725_pdwn_imp_t imp);
+
+#endif
 
 
 #endif /* MCP4725_H_ */
