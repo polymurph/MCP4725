@@ -29,14 +29,15 @@ typedef enum{
     i2c_clk_src_SMCLK = UCSSEL__SMCLK
 }i2c_clk_src_t;
 
+#if 0
 typedef enum{
-    i2c_clk_presc_
+    i2c_clk_presc_111
 }i2c_clk_presc_t;
+#endif
 
-
-void hal_i2c_init(i2c_mode_t i2c_   mode,
-                  i2c_clk_src_t     source,
-                  uint16_t          bitrate);
+void hal_i2c_init(i2c_mode_t    i2c_mode,
+                  i2c_clk_src_t source,
+                  uint16_t      bitrate);
 
 void hal_i2c_setClockSource(i2c_clk_src_t source);
 
