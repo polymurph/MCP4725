@@ -46,6 +46,7 @@ static inline int8_t _check_max_poll_time()
 
 void _i2c_init_master()
 {
+#ifdef example
     UCB1CTLW0 |= UCSWRST;       // Reset I2C interface for configuration
 
 
@@ -83,7 +84,9 @@ void _i2c_init_master()
     PM5CTL0 |= LOCKLPM5;
 
     UCB0CTLW0 &= ~UCSWRST;
+#endif // example
 
+#define my_version
 #ifdef my_version
     // enable register manipulations
     UCB0CTLW0 |= UCSWRST;
