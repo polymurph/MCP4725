@@ -95,6 +95,15 @@ static inline uint8_t _read_rx_buf()
 
 static inline void _gpio_settup()
 {
+
+    // gpios settup for i2c functionality
+    // P1.6 SDA
+    // P1.7 SCL
+    PM5CTL0 &= ~LOCKLPM5;
+    P1SEL0 |= 0xC0;
+    P1SEL1 &= ~0xC0;
+    PM5CTL0 |= LOCKLPM5;
+#ifdef old
     PM5CTL0 &= ~LOCKLPM5;
 
     // settup GPIOs for i2c mode
@@ -102,6 +111,7 @@ static inline void _gpio_settup()
     //P4SEL0 &= ~0x03;
     P4SEL0 |= 0x03;
     P4SEL1 |= 0x03;
+#endif // old
 }
 
 
@@ -109,6 +119,41 @@ void hal_i2c_init(i2c_mode_t        i2c_mode,
                   i2c_clk_src_t     source,
                   uint16_t          bitrate)
 {
+
+    // enable register manipulations
+    UCB0CTLW0 |= UCSWRST;
+
+    // 7 bit slave address mode
+    UCB0CTLW0 &= ~UCSLA10;
+
+    // single master mode
+    UCB0CTLW0 &= ~UCMM;
+
+    // set master mode
+    UCB0CTLW0 |= i2c_mode;
+
+    // set i2c mode
+    UCB0CTLW0 |= UCMODE_3;
+
+    // needed for master mode. read 23.3.5.2 Master Mode
+    UCB0CTLW0 &= ~UCSYNC;
+
+    // select SMCLK as clock source
+    UCB0CTLW0 &= ~UCSSEL_3;
+    UCB0CTLW0 |= source;
+
+    // dissable automatic stop generation
+    UCB1CTLW1 &= ~UCASTP_3;
+
+    // clock prescaler
+    UCB0BRW = bitrate;
+
+    _gpio_settup();
+
+    // dissable manipulations to register and enable i2c operation
+    UCB0CTLW0 &= ~UCSWRST;
+
+#ifdef old
     // set reset condition
     UCB1CTLW0 |= UCSWRST;
 
@@ -159,6 +204,7 @@ void hal_i2c_init(i2c_mode_t        i2c_mode,
     // erase reset condition -> release for operation
     UCB1CTLW0 &= ~UCSWRST;
 #endif
+#endif // old
 }
 
 void hal_i2c_setClockSource(i2c_clk_src_t source)

@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 #include "HAL/hal_clk.h"
-//#include "HAL/hal_i2c.h"
+#include "HAL/hal_i2c.h"
 //#include "HWO/mcp4725.h"
 
 #define POLL_MAX_TIME 10000
@@ -191,6 +191,8 @@ int main(void)
 
     hal_clk_config_SMCLK(clk_SMCLK_src_LFXT, clk_presc_DIV_1, true, true);
 
+
+
     uint8_t data_1[2] = { 0b00001000,
                   0b00000000
 
@@ -206,7 +208,8 @@ int main(void)
 
     };
 
-    _i2c_init_master();
+    //_i2c_init_master();
+    hal_i2c_init(i2c_mode_MASTER, i2c_clk_src_SMCLK, 0x0008);
 
 	while(1)
 	{
