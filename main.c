@@ -4,15 +4,87 @@
 
 // info: https://electronics.stackexchange.com/questions/67524/msp430-i%C2%B2c-single-write-read-example
 
+// https://e2e.ti.com/support/microcontrollers/msp430/f/166/t/702571?MSP430FR5994-I2C-Inaccurate-eUSCI-description-on-User-s-Guide
+
 #include <stdint.h>
 #include "HAL/hal_clk.h"
 //#include "HAL/hal_i2c.h"
 //#include "HWO/mcp4725.h"
 
-#define DAC_ADDRESS 0b01100010
+#define POLL_MAX_TIME 10000
+//#define DAC_ADDRESS 0b01100010
+//#define DAC_ADDRESS 0b0000000
+#define DAC_ADDRESS 0b1100000
+
+static inline void _initiate_start_condition()
+{
+    // generate start condition
+    UCB0CTLW0 |= UCTXSTT;
+
+    // poll for UCTXIFG0
+    while(!(UCB0IFG & UCTXIFG0));
+}
+
+static inline void _initiate_stop_condition()
+{
+    UCB0CTLW0 |= UCTXSTP;
+    while(UCB0CTLW0 & UCTXSTP);
+    UCB0IFG  &= ~UCTXSTP;
+}
+
+static inline int8_t _check_max_poll_time()
+{
+    static uint16_t timer = POLL_MAX_TIME;
+
+    if(timer > 0) {
+        timer--;
+        return 0;
+    } else {
+        return 1;
+    }
+}
 
 void _i2c_init_master()
 {
+    UCB1CTLW0 |= UCSWRST;       // Reset I2C interface for configuration
+
+
+    UCB0CTLW0 =                 /* USCI - B1 configuration register */
+                UCMST         | // Master mode
+                UCSYNC        | // Synchronous mode
+                UCMODE_3      | // I2C mode
+                UCSSEL__SMCLK | // Select SMCLK
+                UCTR          | // Transmitter mode
+                UCSWRST       | // Don't release reset (yet)
+                0;
+
+
+    UCB0CTLW1 =
+                UCCLTO_0      | // Clock low time-out select (disabled)
+                UCASTP_0      | // Automatic STOP condition generation (disabled)
+                UCGLIT_0      | // Deglitch time (50ns)
+                0;
+
+
+    UCB0BRW = 10;               // Bit clock divider 1M/10 = 100kHz
+
+
+    /*UCB0I2COA0 = OWN_ADDRESS  | // Own address
+                 UCOAEN       | // Address Enable
+                 0;
+     */
+
+    // gpios settup for i2c functionality
+    // P1.6 SDA
+    // P1.7 SCL
+    PM5CTL0 &= ~LOCKLPM5;
+    P1SEL0 |= 0xC0;
+    P1SEL1 &= ~0xC0;
+    PM5CTL0 |= LOCKLPM5;
+
+    UCB0CTLW0 &= ~UCSWRST;
+
+#ifdef my_version
     // enable register manipulations
     UCB0CTLW0 |= UCSWRST;
 
@@ -35,6 +107,10 @@ void _i2c_init_master()
     UCB0CTLW0 &= ~UCSSEL_3;
     UCB0CTLW0 |= UCSSEL__SMCLK;
 
+    // dissable automatic stop generation
+    UCB1CTLW1 &= ~UCASTP_3;
+
+    // clock prescaler
     UCB0BRW = 0x0008;
 
     // gpios settup for i2c functionality
@@ -47,7 +123,7 @@ void _i2c_init_master()
 
     // dissable manipulations to register and enable i2c operation
     UCB0CTLW0 &= ~UCSWRST;
-
+#endif // my_version
 }
 
 
@@ -55,34 +131,52 @@ int8_t _i2c_master_tx(uint8_t address, const uint8_t *data, uint8_t len)
 {
     if(len == 0) return -1;
 
-    uint8_t index = 0;
+    // clear old flags
+    UCB0IFG = 0;
 
     // set slave address
-    UCB0I2CSA |= address;
+    UCB0I2CSA = address;
 
     // setting transmitter mode
     UCB0CTLW0 |= UCTR;
 
-    // generate start condition
-    UCB0CTLW0 |= UCTXSTT;
-
-    // poll for UCTXIFG0
-    while(!(UCB0IFG & UCTXIFG0))
+    _initiate_start_condition();
 
     // poll for address transmission completion
     while(UCB0CTLW0 & UCTXSTT);
 
+    // TODO: check for NACK here!
+
+
     do{
         // write data in TX register
-        UCB0TXBUF = data[index++];
+        UCB0TXBUF = *data;
+        data++;
+
+        while( !(UCB0IFG & UCTXIFG) & !(UCB0IFG & UCNACKIFG) );
+
+        /*
+        while(!(UCB0IFG & UCTXIFG0)){
+            if(_check_max_poll_time()) {
+                _initiate_stop_condition();
+                return -1;
+            }
+        }*/
+
+        if(UCB0IFG & UCNACKIFG) {
+            UCB0IFG &= ~UCNACKIFG;
+            _initiate_stop_condition();
+            return -1;
+        }
 
         // poll for UCTXIFG0
-        while(!(UCB0IFG & UCTXIFG0));
+        //while(!(UCB0IFG & UCTXIFG0));
+        //while(UCB0IFG & UCTXIFG0);
+        //UCB0IFG &= ~UCTXIFG0;
 
-    }while(index < len);
+    }while(len--);
 
-    // generate stop condition
-    UCB0CTLW0 |= UCTXSTP;
+    _initiate_stop_condition();
 
     return 0;
 }
@@ -90,6 +184,7 @@ int8_t _i2c_master_tx(uint8_t address, const uint8_t *data, uint8_t len)
 int main(void)
 {
     WDTCTL = WDTPW + WDTHOLD; // Disable Watchdog
+    volatile int8_t status = 0;
 
     hal_clk_config_SMCLK(clk_SMCLK_src_LFXT, clk_presc_DIV_1, true, true);
 
@@ -103,13 +198,18 @@ int main(void)
 
     };
 
+    uint8_t data_3[2] = { 0b00001111,
+                  0b11111111
+
+    };
+
     _i2c_init_master();
 
 	while(1)
 	{
-	    _i2c_master_tx(DAC_ADDRESS, data_1, 2);
+	    status = _i2c_master_tx(DAC_ADDRESS, data_3, 2);
         __delay_cycles(10000);
-	    _i2c_master_tx(DAC_ADDRESS, data_2, 2);
+	    status = _i2c_master_tx(DAC_ADDRESS, data_2, 2);
         __delay_cycles(10000);
 
 	}
