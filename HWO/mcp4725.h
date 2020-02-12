@@ -90,7 +90,7 @@ void mcp4725_write_DAC(const mcp4725_t* device, uint16_t value);
 
 void mcp4725_write_DAC_and_EEPROM(const mcp4725_t* device, uint16_t value);
 
-void mcp4725_set_powerdown_impedance(mcp4725_t* device, mcp4725_pdwn_imp_t impedance);
+void mcp4725_set_powerdown_impedance(mcp4725_t* device, mcp4725_pwrd_md_t impedance);
 
 
 
