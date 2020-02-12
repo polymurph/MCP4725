@@ -213,7 +213,8 @@ int main(void)
 
 	while(1)
 	{
-	    status = _i2c_master_tx(DAC_ADDRESS, data_3, 2);
+	    //status = _i2c_master_tx(DAC_ADDRESS, data_3, 2);
+	    status = hal_i2c_write(DAC_ADDRESS, data_3, 2);
         __delay_cycles(10000);
 	    status = _i2c_master_tx(DAC_ADDRESS, data_2, 2);
         __delay_cycles(10000);

@@ -19,12 +19,11 @@ typedef void (*callback_t)();
 typedef uint8_t (*callback_1_t)(uint8_t);
 #endif
 
-/**
-* function pointer prototype with 
-*
-*/
-typedef uint8_t (*u8_fptr_u8_pu8_u8_t)(uint8_t, *uint8_t, uint8_t);
 
+typedef uint8_t (*u8_fptr_u8_pu8_u8_t)(uint8_t, uint8_t*, uint8_t);
+/*
+typedef uint8_t (*u8_fptr_u8_pu8_u8_t)(uint8_t, *uint8_t, uint8_t);
+*/
 
 typedef enum {
     mcp4725_addr_0x0 = 0b01100000,
