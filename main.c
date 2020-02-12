@@ -297,9 +297,6 @@ int main(void)
     {
         mcp4725_write_DAC(&dac, cnt++);
         cnt &= 0x0FFFF;
-        //__delay_cycles(1000);
-
-
     }
 }
 #endif // example_1
