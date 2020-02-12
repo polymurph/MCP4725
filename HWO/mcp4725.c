@@ -62,8 +62,8 @@ void mcp4725_write_DAC_and_EEPROM(mcp4725_t* device, uint16_t value)
 
     // setting up data set to be sent to the device
     temp[0] = mcp4725_cmd_WRITE_DAC_AND_EEPROM | (device->power_down_mode << 1);
-    temp[1] = (uint8_t)(device->dac_value >> 4);
-    temp[2] = (uint8_t)(device->dac_value << 4);
+    temp[1] = (uint8_t)(value >> 4);
+    temp[2] = (uint8_t)(value << 4);
     temp[3] = temp[0];
     temp[4] = temp[1];
     temp[5] = temp[2];

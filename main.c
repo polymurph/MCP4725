@@ -292,6 +292,7 @@ int main(void)
                  0,
                  0);
 
+    mcp4725_write_DAC_and_EEPROM(&dac, 0x800);
     while(1)
     {
         mcp4725_write_DAC(&dac, cnt++);
