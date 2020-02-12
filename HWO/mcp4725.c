@@ -14,6 +14,34 @@
 #define MCP4725_ADDRESS_MASK 0b00000010
 #define MCP4725_ADDRESS_BASE 0b11000100
 
+void mcp4725_init(mcp4725_t* device,
+                  u8_fptr_u8_pu8_u8_t i2c_tx_cb,
+                  mcp4725_addr_t address,
+                  mcp4725_pdwn_imp_t power_down_mode,
+                  uint16_t dac_data,
+                  uint16_t eemprom_data)
+{
+    uint8_t temp[6];
+
+    // update device object
+    device->i2c_tx = i2c_tx_cb;
+    device->address = address;
+    device->power_down_mode = power_down_mode;
+    device->dac_data = dac_data;
+    device->eemprom_data = eemprom_data;
+
+    // setting up data set to be sent to the device
+    temp[0] = mcp4725_cmd_WRITE_DAC_AND_EEPROM | (power_down_mode << 1);
+    temp[1] = (uint8_t)(dac_data >> 4);
+    temp[2] = (uint8_t)(dac_data << 4);
+    temp[3] = temp[0];
+    temp[4] = temp[1];
+    temp[5] = temp[2];
+
+    // writing to the device
+    device->i2c_tx(device->address, temp, 6);
+}
+
 void mcp4725_write_DAC(const mcp4725_t* device, uint16_t value)
 {
     uint16_t temp = value & 0x0FFFF;
@@ -42,9 +70,9 @@ void mcp4725_set_powerdown_impedance(mcp4725_t* device, mcp4725_pdwn_imp_t imped
 
 
 #undef MCP4725_ADDRESS_BASE
+/*
 
-
-#if old
+#ifdef old
 //#include "dummy.h"
 
 callback_1_t cb_i2c_write = 0;
@@ -54,7 +82,7 @@ u8_fptr_u8_pu8_u8 i2c_transmit = 0;
 
 
 uint8_t power_down_impedance = NORMAL_MODE;
-#if 0
+#ifdef out
 void mcp4725_register_i2c_start(callback_1_t start)
 {
 	cb_i2c_start = start;
@@ -67,7 +95,8 @@ void mcp4725_register_i2c_stop(callback_t stop)
 {
 	cb_i2c_stop = stop;
 }
-#endif
+
+#endif // out
 
 void mcp4725_init(u8_fptr_u8_pu8_u8 i2c_tx)
 {
@@ -84,7 +113,7 @@ void mcp4725_write_DAC(uint8_t address, uint16_t data)
 	address = (address & MCP4725_ADDRESS_MASK) | MCP4725_ADDRESS_BASE;
 	i2c_transmit(address, data, 3);
 	
-	#if 0
+	#ifdef out
 	data &= 0x0FFF;
 	data = data << 4;
 	if(cb_i2c_start(address)) {
@@ -96,7 +125,7 @@ void mcp4725_write_DAC(uint8_t address, uint16_t data)
 	cb_i2c_write((uint8_t)(data));
 	
 	cb_i2c_stop();
-	#ednif
+	#endif // out
 }
 
 void mcp4725_eeprom_write(uint8_t address, uint16_t data)
@@ -131,4 +160,4 @@ void mcp4725_set_powerdown_impedance(mcp4725_pdwn_imp_t imp)
 
 #endif
 
-
+*/
