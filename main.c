@@ -9,12 +9,12 @@
 #include <stdint.h>
 #include "HAL/hal_clk.h"
 #include "HAL/hal_i2c.h"
-//#include "HWO/mcp4725.h"
+#include "HWO/mcp4725.h"
 
 #define POLL_MAX_TIME 10000
 //#define DAC_ADDRESS 0b01100010
 //#define DAC_ADDRESS 0b0000000
-#define DAC_ADDRESS 0b1100000
+#define DAC_ADDRESS 0b01100000
 
 static inline void _initiate_start_condition()
 {
@@ -184,14 +184,16 @@ int8_t _i2c_master_tx(uint8_t address, const uint8_t *data, uint8_t len)
     return 0;
 }
 
+
+#define example_1
+
+#ifdef example_0
 int main(void)
 {
     WDTCTL = WDTPW + WDTHOLD; // Disable Watchdog
     volatile int8_t status = 0;
 
     hal_clk_config_SMCLK(clk_SMCLK_src_LFXT, clk_presc_DIV_1, true, true);
-
-
 
     uint8_t data_1[2] = { 0b00001000,
                   0b00000000
@@ -223,5 +225,79 @@ int main(void)
 	
 	return 0;
 }
+#endif // example_0
+
+#ifdef example_1
+int main(void)
+{
+    uint16_t cnt = 0;
+    mcp4725_t dac;
+
+    WDTCTL = WDTPW + WDTHOLD; // Disable Watchdog
+
+    //hal_clk_config_DCO(clk_dco_freq_4_MHz);
+    //hal_clk_config_SMCLK(clk_SMCLK_src_DCO, clk_presc_DIV_1, true, true);
+
+    hal_clk_config_SMCLK(clk_SMCLK_src_LFXT, clk_presc_DIV_1, true, true);
+    hal_i2c_init(i2c_mode_MASTER, i2c_clk_src_SMCLK, 0x0008);
+
+    mcp4725_init(&dac,
+                 hal_i2c_write,
+                 mcp4725_addr_0x0,
+                 mcp4725_pwrd_md_NORMAL,
+                 0,
+                 0);
+
+    while(1)
+    {
+        mcp4725_write_DAC(&dac, cnt++);
+        cnt &= 0x0FFFF;
+        __delay_cycles(10000);
 
 
+    }
+}
+#endif // example_1
+
+#ifdef example_2
+int main(void)
+{
+    WDTCTL = WDTPW + WDTHOLD; // Disable Watchdog
+    volatile int8_t status = 0;
+
+    //hal_clk_config_DCO(clk_dco_freq_1_MHz);
+    hal_clk_config_SMCLK(clk_SMCLK_src_LFXT, clk_presc_DIV_1, true, true);
+
+
+
+    uint8_t data_1[2] = { 0b00001000,
+                  0b00000000
+
+    };
+
+    uint8_t data_2[2] = { 0b00000000,
+                  0b00000000
+
+    };
+
+    uint8_t data_3[2] = { 0b00001111,
+                  0b11111111
+
+    };
+
+    //_i2c_init_master();
+    hal_i2c_init(i2c_mode_MASTER, i2c_clk_src_SMCLK, 0x0008);
+
+    while(1)
+    {
+        //status = _i2c_master_tx(DAC_ADDRESS, data_3, 2);
+        status = hal_i2c_write(DAC_ADDRESS, data_3, 2);
+        __delay_cycles(10000);
+        status = _i2c_master_tx(DAC_ADDRESS, data_2, 2);
+        __delay_cycles(10000);
+
+    }
+
+    return 0;
+}
+#endif // example_2

@@ -20,7 +20,7 @@ typedef uint8_t (*callback_1_t)(uint8_t);
 #endif
 
 
-typedef uint8_t (*u8_fptr_u8_pu8_u8_t)(uint8_t, uint8_t*, uint8_t);
+typedef uint8_t (*u8_fptr_u8_pu8_u8_t)(uint8_t,const uint8_t*, uint8_t);
 /*
 typedef uint8_t (*u8_fptr_u8_pu8_u8_t)(uint8_t, *uint8_t, uint8_t);
 */
@@ -59,16 +59,16 @@ typedef enum{
 
 typedef enum{
     mcp4725_pwrd_md_NORMAL = 0x00,
-    mcp4725_pwrd_md_1k_ohm = 0x10,
-    mcp4725_pwrd_md_100k_ohm = 0x20,
-    mcp4725_pwrd_md_500k_ohm = 0x30
+    mcp4725_pwrd_md_1k_ohm = 0x01,
+    mcp4725_pwrd_md_100k_ohm = 0x02,
+    mcp4725_pwrd_md_500k_ohm = 0x03
 }mcp4725_pwrd_md_t;
 
 // mcp4725 class
 typedef struct{
     u8_fptr_u8_pu8_u8_t i2c_tx;
     mcp4725_addr_t address;
-    mcp4725_pdwn_imp_t power_down_mode;
+    mcp4725_pwrd_md_t power_down_mode;
     uint16_t dac_data;
     uint16_t eemprom_data;
 }mcp4725_t;
@@ -82,7 +82,7 @@ void mcp4725_register_i2c_stop(callback_t stop);
 void mcp4725_init(mcp4725_t* device,
                   u8_fptr_u8_pu8_u8_t i2c_tx_cb,
                   mcp4725_addr_t address,
-                  mcp4725_pdwn_imp_t power_down_mode,
+                  mcp4725_pwrd_md_t power_down_mode,
                   uint16_t dac_data,
                   uint16_t eemprom_data);
 

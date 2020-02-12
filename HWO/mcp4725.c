@@ -17,13 +17,13 @@
 void mcp4725_init(mcp4725_t* device,
                   u8_fptr_u8_pu8_u8_t i2c_tx_cb,
                   mcp4725_addr_t address,
-                  mcp4725_pdwn_imp_t power_down_mode,
+                  mcp4725_pwrd_md_t power_down_mode,
                   uint16_t dac_data,
                   uint16_t eemprom_data)
 {
     uint8_t temp[6];
 
-    // update device object
+    // update device attributes
     device->i2c_tx = i2c_tx_cb;
     device->address = address;
     device->power_down_mode = power_down_mode;
@@ -39,17 +39,20 @@ void mcp4725_init(mcp4725_t* device,
     temp[5] = temp[2];
 
     // writing to the device
-    device->i2c_tx(device->address, temp, 6);
+    device->i2c_tx((uint8_t)(device->address), temp, 6);
 }
 
 void mcp4725_write_DAC(const mcp4725_t* device, uint16_t value)
 {
-    uint16_t temp = value & 0x0FFFF;
-    uint8_t data[2] = {device->power_down_mode | (uint8_t)(value >> 8),
-                       (uint8_t)(value)
-    };
-    // writing to DAC using fast write mode
-    device->i2c_tx(MCP4725_ADDRESS_BASE | (device->address), data, 2);
+    uint8_t temp[3];
+
+    // setting up data set
+    temp[0] = mcp4725_cmd_WRITE_DAC | (device->power_down_mode << 1);
+    temp[1] = (uint8_t)(value >> 4);
+    temp[2] = (uint8_t)(value << 4);
+
+    device->i2c_tx(device->address, temp, 3);
+
 }
 
 void mcp4725_write_DAC_and_EEPROM(const mcp4725_t* device, uint16_t value)

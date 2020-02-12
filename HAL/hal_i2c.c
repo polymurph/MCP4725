@@ -245,7 +245,7 @@ void hal_i2c_write_Register(uint8_t address, uint8_t reg, uint8_t data)
     _stop_sequence();
 }
 
-i2c_error_t hal_i2c_write(uint8_t address, const uint8_t * data, uint8_t len)
+uint8_t hal_i2c_write(uint8_t address, const uint8_t * data, uint8_t len)
 {
     if(len == 0) return i2c_error_DATA_LEN_IS_0;
 
@@ -288,15 +288,6 @@ i2c_error_t hal_i2c_write(uint8_t address, const uint8_t * data, uint8_t len)
     _initiate_stop_condition();
 
     return i2c_error_NONE;
-    /*
-    uint8_t i = 0;
-    if(_start_sequence(address, false)) return true;
-    for(i = 0; i < len; i++){
-        if(_write_tx_buf(data[i])) return true;
-    }
-    _stop_sequence();
-    return i2c_error_NONE;
-    */
 }
 
 bool hal_i2c_read_Byte(uint8_t address, uint8_t *byte)

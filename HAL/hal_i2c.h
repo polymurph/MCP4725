@@ -29,14 +29,14 @@ typedef enum{
     i2c_clk_src_SMCLK = UCSSEL__SMCLK
 }i2c_clk_src_t;
 
-typedef enum{
+enum{
     i2c_error_NONE = 0,
     i2c_error_DEVICE_NOT_FOUND,
     i2c_error_RECIVED_NACK,
     i2c_error_ARBITRATION_LOST,
     i2c_error_DATA_LEN_IS_0,
     i2c_error_POLL_TIME_LIMIT_EXCEEDED
-}i2c_error_t;
+};
 
 #if 0
 typedef enum{
@@ -59,7 +59,7 @@ void hal_i2c_write_Register(uint8_t     address,
                             uint8_t     reg,
                             uint8_t     data);
 
-i2c_error_t hal_i2c_write(uint8_t          address,
+uint8_t hal_i2c_write(uint8_t          address,
                    const uint8_t *  data,
                    uint8_t          len);
 
