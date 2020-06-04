@@ -9,7 +9,7 @@ MCP4725::MCP4725(i2c_write_t i2c_write,
                  uint16_t eemprom_value) :
                  i2c_write(i2c_write),
                  address(address),
-                 power_down_md(power_down_mode),
+                 power_down_mode(power_down_mode),
                  dac_value(dac_value),
                  eeprom_value(eeprom_value)
 {
@@ -59,7 +59,7 @@ void MCP4725::set_DAC_and_EEPROM(uint16_t value)
     i2c_write(address, temp, 6);
 }
 
-void MCP4725::set_powerdown_impedance(pwrd_md_t power_down_md)
+void MCP4725::set_powerdown_impedance(pwrd_md_t power_down_mode)
 {
-
+    this.power_down_mode = power_down_mode;
 }

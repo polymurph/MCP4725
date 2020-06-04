@@ -30,7 +30,7 @@ class MCP4725
         pwrd_md_500k_ohm = 0x03
     }pwrd_md_t;
     
-    MCP4725(u8_fptr_u8_pu8_u8_t i2c_tx_cb,
+    MCP4725(i2c_write_t i2c_write,
             i2c_addr_t address,
             pwrd_md_t power_down_mode,
             uint16_t dac_value,
@@ -40,12 +40,14 @@ class MCP4725
 
     void set_DAC_and_EEPROM(uint16_t value);
 
-    void set_powerdown_impedance(pwrd_md_t power_down_md);
+    // TODO: complete implementation
+    void set_powerdown_impedance(pwrd_md_t power_down_mode);
 
     private:
+    
     i2c_write_t i2c_write;
     i2c_addr_t address;
-    pwrd_md_t power_down_md;
+    pwrd_md_t power_down_mode;
     uint16_t dac_value;
     uint16_t eeprom_value;
 

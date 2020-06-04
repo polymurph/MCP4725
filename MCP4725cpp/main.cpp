@@ -6,11 +6,11 @@
  */ 
 
 #include <avr/io.h>
-
+#include"mcp4725.h
 
 int main(void)
 {
-    /* Replace with your application code */
+    
     while (1) 
     {
     }
