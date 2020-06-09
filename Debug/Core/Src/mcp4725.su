@@ -1,0 +1,12 @@
+gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+std_function.h:271:5:std::_Function_base::_Function_base()	16	static
+std_function.h:279:10:bool std::_Function_base::_M_empty() const	16	static
+mcp4725.cpp:4:1:MCP4725::MCP4725(MCP4725::i2c_write_t, MCP4725::i2c_addr_t, MCP4725::pwrd_md_t, uint16_t, uint16_t)	32	static
+mcp4725.cpp:28:6:void MCP4725::set_DAC(uint16_t)	24	static
+mcp4725.cpp:43:6:void MCP4725::set_DAC_and_EEPROM(uint16_t)	24	static
+mcp4725.cpp:62:6:void MCP4725::set_powerdown_impedance(MCP4725::pwrd_md_t)	16	static
+std_function.h:671:5:)>&) [with _Res = void; _ArgTypes = {unsigned char, unsigned char*, unsigned char}]	16	static
+std_function.h:701:5:) const [with _Res = void; _ArgTypes = {unsigned char, unsigned char*, unsigned char}]	40	static
+std_function.h:582:16:)>::operator bool() const [with _Res = void; _ArgTypes = {unsigned char, unsigned char*, unsigned char}]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = unsigned char]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = unsigned char*]	16	static
