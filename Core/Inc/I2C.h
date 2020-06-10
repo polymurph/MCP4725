@@ -9,9 +9,10 @@
 #define I2C_H_
 
 #include "II2C.h"
-#include "main.h"
+#include "stm32f4xx_hal.h"
 
-class I2C: public II2C {
+class I2C// : public II2C
+{
 public:
 	I2C();
 	virtual ~I2C();

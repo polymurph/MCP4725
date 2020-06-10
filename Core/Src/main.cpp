@@ -46,21 +46,24 @@ int main(void)
   MX_USART2_UART_Init();
   //MX_I2C1_Init();
 
-  static I2C i2c_ch();
+  I2C i2c_ch();
 
 
-
+#if 0
 
   MCP4725 adc(std::bind(&I2C::write,&i2c_ch,std::placeholders::_1,std::placeholders::_2,std::placeholders::_3),
 		  	  MCP4725::i2c_addr_0x0,
 			  MCP4725::pwrd_md_1k_ohm,
-			  0x00,
-			  0x00);
+			  0x0000,
+			  0x0000);
 
+  adc.set_DAC(0xA5A5);
+
+#endif
   while (1)
   {
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-	  for(uint32_t i = 0; i<0x00F0FFFF;i++);
+	  for(uint32_t i = 0; i<500000;i++);
   }
 }
 

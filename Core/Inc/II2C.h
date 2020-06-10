@@ -11,9 +11,6 @@
 
 class II2C {
 public:
-	II2C();
-	virtual ~II2C();
-
 	virtual void write(uint8_t address, uint8_t data, uint8_t n) = 0;
 };
 

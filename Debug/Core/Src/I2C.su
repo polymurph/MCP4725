@@ -1,0 +1,4 @@
+I2C.cpp:11:1:I2C::I2C()	16	static
+I2C.cpp:28:1:I2C::~I2C()	16	static
+I2C.cpp:28:1:virtual I2C::~I2C()	16	static
+I2C.cpp:32:6:void I2C::write(uint8_t, uint8_t*, uint8_t)	32	static
