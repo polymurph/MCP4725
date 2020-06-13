@@ -10,7 +10,9 @@ class MCP4725
 {
     public:
 
-    typedef function<void(uint8_t,uint8_t*, uint8_t)>i2c_write_t;
+    typedef function<void(uint8_t, uint8_t*, uint8_t)>i2c_write_t;
+
+    //typedef void(*i2c_write_t)(uint8_t, uint8_t*, uint8_t);
 
     typedef enum {
         i2c_addr_0x0 = 0b01100000,

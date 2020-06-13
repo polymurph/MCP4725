@@ -1,7 +1,114 @@
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-main.cpp:40:5:int main()	16	static
-main.cpp:74:6:void SystemClock_Config()	88	static
-main.cpp:118:13:void MX_I2C1_Init()	8	static
-main.cpp:152:13:void MX_USART2_UART_Init()	8	static
-main.cpp:185:13:void MX_GPIO_Init()	48	static
-main.cpp:221:6:void Error_Handler()	4	static
+std_function.h:106:17:void* std::_Any_data::_M_access()	16	static
+std_function.h:107:17:const void* std::_Any_data::_M_access() const	16	static
+std_function.h:271:5:std::_Function_base::_Function_base()	16	static
+std_function.h:273:5:std::_Function_base::~_Function_base()	16	static
+std_function.h:389:11:std::function<void(unsigned char, unsigned char*, unsigned char)>::~function()	16	static
+main.cpp:38:5:int main()	192	static
+main.cpp:86:6:void SystemClock_Config()	88	static
+main.cpp:130:13:void MX_I2C1_Init()	8	static
+main.cpp:164:13:void MX_USART2_UART_Init()	8	static
+main.cpp:197:13:void MX_GPIO_Init()	48	static
+main.cpp:233:6:void Error_Handler()	4	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = void (I2C::*)(unsigned char, unsigned char*, unsigned char)]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = I2C*]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = const std::_Placeholder<1>&]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = const std::_Placeholder<2>&]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = const std::_Placeholder<3>&]	16	static
+functional:899:5:) [with _Result = void; _Func = void (I2C::*)(unsigned char, unsigned char*, unsigned char); _BoundArgs = {I2C*, const std::_Placeholder<1>&, const std::_Placeholder<2>&, const std::_Placeholder<3>&}]	48	static
+move.h:98:5:constexpr typename std::remove_reference< <template-parameter-1-1> >::type&& std::move(_Tp&&) [with _Tp = std::tuple<I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3> >&]	16	static
+tuple:351:7:static constexpr _Head& std::_Tuple_impl<_Idx, _Head>::_M_head(std::_Tuple_impl<_Idx, _Head>&) [with unsigned int _Idx = 3; _Head = std::_Placeholder<3>]	16	static
+tuple:113:7:static constexpr _Head& std::_Head_base<_Idx, _Head, true>::_M_head(std::_Head_base<_Idx, _Head, true>&) [with unsigned int _Idx = 3; _Head = std::_Placeholder<3>]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = std::_Placeholder<3>]	16	static
+tuple:371:7:constexpr std::_Tuple_impl<_Idx, _Head>::_Tuple_impl(std::_Tuple_impl<_Idx, _Head>&&) [with unsigned int _Idx = 3; _Head = std::_Placeholder<3>]	16	static
+tuple:201:7:>&) [with unsigned int _Idx = 2; _Head = std::_Placeholder<2>; _Tail = {std::_Placeholder<3>}]	16	static
+tuple:195:7:>&) [with unsigned int _Idx = 2; _Head = std::_Placeholder<2>; _Tail = {std::_Placeholder<3>}]	16	static
+tuple:113:7:static constexpr _Head& std::_Head_base<_Idx, _Head, true>::_M_head(std::_Head_base<_Idx, _Head, true>&) [with unsigned int _Idx = 2; _Head = std::_Placeholder<2>]	16	static
+move.h:98:5:constexpr typename std::remove_reference< <template-parameter-1-1> >::type&& std::move(_Tp&&) [with _Tp = std::_Tuple_impl<3, std::_Placeholder<3> >&]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = std::_Placeholder<2>]	16	static
+tuple:223:7:>&&) [with unsigned int _Idx = 2; _Head = std::_Placeholder<2>; _Tail = {std::_Placeholder<3>}]	16	static
+tuple:201:7:>&) [with unsigned int _Idx = 1; _Head = std::_Placeholder<1>; _Tail = {std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+tuple:195:7:>&) [with unsigned int _Idx = 1; _Head = std::_Placeholder<1>; _Tail = {std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+tuple:113:7:static constexpr _Head& std::_Head_base<_Idx, _Head, true>::_M_head(std::_Head_base<_Idx, _Head, true>&) [with unsigned int _Idx = 1; _Head = std::_Placeholder<1>]	16	static
+move.h:98:5:constexpr typename std::remove_reference< <template-parameter-1-1> >::type&& std::move(_Tp&&) [with _Tp = std::_Tuple_impl<2, std::_Placeholder<2>, std::_Placeholder<3> >&]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = std::_Placeholder<1>]	16	static
+tuple:223:7:>&&) [with unsigned int _Idx = 1; _Head = std::_Placeholder<1>; _Tail = {std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+tuple:662:17:constexpr std::tuple<_Elements>::tuple(std::tuple<_Elements>&&) [with _Elements = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+functional:707:7:)>&&) [with _Result = void; _Functor = void (I2C::*)(unsigned char, unsigned char*, unsigned char); _Bound_args = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	24	static
+move.h:98:5:constexpr typename std::remove_reference< <template-parameter-1-1> >::type&& std::move(_Tp&&) [with _Tp = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>&]	16	static
+std_function.h:685:7:)>::function(_Functor) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>; <template-parameter-2-2> = void; <template-parameter-2-3> = void; _Res = void; _ArgTypes = {unsigned char, unsigned char*, unsigned char}]	24	static
+functional:701:11:) [with _Args = {I2C*, const std::_Placeholder<1>&, const std::_Placeholder<2>&, const std::_Placeholder<3>&}; _Result = void; _Functor = void (I2C::*)(unsigned char, unsigned char*, unsigned char); _Bound_args = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	48	static
+move.h:98:5:constexpr typename std::remove_reference< <template-parameter-1-1> >::type&& std::move(_Tp&&) [with _Tp = void (I2C::*&)(unsigned char, unsigned char*, unsigned char)]	16	static
+tuple:86:19:constexpr std::_Head_base<_Idx, _Head, true>::_Head_base(_UHead&&) [with _UHead = std::_Placeholder<3>; unsigned int _Idx = 3; _Head = std::_Placeholder<3>]	16	static
+tuple:86:19:constexpr std::_Head_base<_Idx, _Head, true>::_Head_base(_UHead&&) [with _UHead = std::_Placeholder<2>; unsigned int _Idx = 2; _Head = std::_Placeholder<2>]	16	static
+tuple:86:19:constexpr std::_Head_base<_Idx, _Head, true>::_Head_base(_UHead&&) [with _UHead = std::_Placeholder<1>; unsigned int _Idx = 1; _Head = std::_Placeholder<1>]	16	static
+tuple:201:7:>&) [with unsigned int _Idx = 0; _Head = I2C*; _Tail = {std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+tuple:195:7:>&) [with unsigned int _Idx = 0; _Head = I2C*; _Tail = {std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+tuple:160:7:static constexpr _Head& std::_Head_base<_Idx, _Head, false>::_M_head(std::_Head_base<_Idx, _Head, false>&) [with unsigned int _Idx = 0; _Head = I2C*]	16	static
+move.h:98:5:constexpr typename std::remove_reference< <template-parameter-1-1> >::type&& std::move(_Tp&&) [with _Tp = std::_Tuple_impl<1, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3> >&]	16	static
+tuple:223:7:>&&) [with unsigned int _Idx = 0; _Head = I2C*; _Tail = {std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	24	static
+std_function.h:258:4:static bool std::_Function_base::_Base_manager<_Functor>::_M_not_empty_function(const _Tp&) [with _Tp = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>; _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>]	16	static
+std_function.h:238:2:static void std::_Function_base::_Base_manager<_Functor>::_M_init_functor(std::_Any_data&, _Functor&&) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>]	32	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = unsigned char]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = unsigned char*]	16	static
+std_function.h:314:7:) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>; _ArgTypes = {unsigned char, unsigned char*, unsigned char}]	40	static
+std_function.h:212:2:static bool std::_Function_base::_Base_manager<_Functor>::_M_manager(std::_Any_data&, const std::_Any_data&, std::_Manager_operation) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>]	40	static
+tuple:646:19: (_Elements) >= 1)), bool>::type <anonymous> = 1; _Elements = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	48	static
+tuple:132:19:constexpr std::_Head_base<_Idx, _Head, false>::_Head_base(_UHead&&) [with _UHead = I2C*; unsigned int _Idx = 0; _Head = I2C*]	16	static
+std_function.h:267:2:static void std::_Function_base::_Base_manager<_Functor>::_M_init_functor(std::_Any_data&, _Functor&&, std::false_type) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>]	32	static
+std_function.h:170:2:static _Functor* std::_Function_base::_Base_manager<_Functor>::_M_get_pointer(const std::_Any_data&) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>]	24	static
+tuple:646:19: (_Elements) >= 1)), bool>::type <anonymous> = 1; _Elements = {unsigned char&&, unsigned char*&&, unsigned char&&}]	40	static
+tuple:216:19:) [with _UHead = unsigned char; _UTail = {unsigned char*, unsigned char}; <template-parameter-2-3> = void; unsigned int _Idx = 0; _Head = unsigned char&&; _Tail = {unsigned char*&&, unsigned char&&}]	32	static
+tuple:216:19:) [with _UHead = unsigned char*; _UTail = {unsigned char}; <template-parameter-2-3> = void; unsigned int _Idx = 1; _Head = unsigned char*&&; _Tail = {unsigned char&&}]	32	static
+tuple:365:19:constexpr std::_Tuple_impl<_Idx, _Head>::_Tuple_impl(_UHead&&) [with _UHead = unsigned char; unsigned int _Idx = 2; _Head = unsigned char&&]	24	static
+tuple:132:19:constexpr std::_Head_base<_Idx, _Head, false>::_Head_base(_UHead&&) [with _UHead = unsigned char; unsigned int _Idx = 2; _Head = unsigned char&&]	16	static
+tuple:132:19:constexpr std::_Head_base<_Idx, _Head, false>::_Head_base(_UHead&&) [with _UHead = unsigned char*; unsigned int _Idx = 1; _Head = unsigned char*&&]	16	static
+tuple:132:19:constexpr std::_Head_base<_Idx, _Head, false>::_Head_base(_UHead&&) [with _UHead = unsigned char; unsigned int _Idx = 0; _Head = unsigned char&&]	16	static
+tuple:351:7:static constexpr _Head& std::_Tuple_impl<_Idx, _Head>::_M_head(std::_Tuple_impl<_Idx, _Head>&) [with unsigned int _Idx = 2; _Head = unsigned char&&]	16	static
+tuple:160:7:static constexpr _Head& std::_Head_base<_Idx, _Head, false>::_M_head(std::_Head_base<_Idx, _Head, false>&) [with unsigned int _Idx = 2; _Head = unsigned char&&]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = unsigned char&&]	16	static
+tuple:195:7:>&) [with unsigned int _Idx = 1; _Head = unsigned char*&&; _Tail = {unsigned char&&}]	16	static
+tuple:160:7:static constexpr _Head& std::_Head_base<_Idx, _Head, false>::_M_head(std::_Head_base<_Idx, _Head, false>&) [with unsigned int _Idx = 1; _Head = unsigned char*&&]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = unsigned char*&&]	16	static
+tuple:1459:5:) [with _Elements = {unsigned char, unsigned char*, unsigned char}]	32	static
+functional:714:2:) [with _Args = {unsigned char, unsigned char*, unsigned char}; _Result = void; _Functor = void (I2C::*)(unsigned char, unsigned char*, unsigned char); _Bound_args = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	56	static
+std_function.h:111:7:_Tp& std::_Any_data::_M_access() [with _Tp = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>*]	16	static
+std_function.h:189:2:static void std::_Function_base::_Base_manager<_Functor>::_M_clone(std::_Any_data&, const std::_Any_data&, std::false_type) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>]	32	static
+std_function.h:205:2:static void std::_Function_base::_Base_manager<_Functor>::_M_destroy(std::_Any_data&, std::false_type) [with _Functor = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>]	16	static
+tuple:216:19:) [with _UHead = I2C*; _UTail = {const std::_Placeholder<1>&, const std::_Placeholder<2>&, const std::_Placeholder<3>&}; <template-parameter-2-3> = void; unsigned int _Idx = 0; _Head = I2C*; _Tail = {std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	32	static
+std_function.h:116:7:const _Tp& std::_Any_data::_M_access() const [with _Tp = std::_Bind_result<void, void (I2C::*(I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>))(unsigned char, unsigned char*, unsigned char)>*]	16	static
+tuple:195:7:>&) [with unsigned int _Idx = 0; _Head = unsigned char&&; _Tail = {unsigned char*&&, unsigned char&&}]	16	static
+tuple:160:7:static constexpr _Head& std::_Head_base<_Idx, _Head, false>::_M_head(std::_Head_base<_Idx, _Head, false>&) [with unsigned int _Idx = 0; _Head = unsigned char&&]	16	static
+functional:630:2:_Indexes = {0, 1, 2, 3}; _Result = void; _Functor = void (I2C::*)(unsigned char, unsigned char*, unsigned char); _Bound_args = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	64	static
+tuple:210:17:) [with unsigned int _Idx = 1; _Head = std::_Placeholder<1>; _Tail = {std::_Placeholder<2>, std::_Placeholder<3>}]	24	static
+tuple:1314:5:>&) [with unsigned int __i = 0; _Elements = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+functional:430:2:_CVArg&& std::_Mu<_Arg, false, false>::operator()(_CVArg&&, _Tuple&) const volatile [with _CVArg = I2C*&; _Tuple = std::tuple<unsigned char&&, unsigned char*&&, unsigned char&&>; _Arg = I2C*]	24	static
+tuple:1314:5:>&) [with unsigned int __i = 1; _Elements = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+move.h:98:5:constexpr typename std::remove_reference< <template-parameter-1-1> >::type&& std::move(_Tp&&) [with _Tp = std::tuple<unsigned char&&, unsigned char*&&, unsigned char&&>&]	16	static
+functional:412:2:std::_Safe_tuple_element_t<(std::is_placeholder<_Tp>::value - 1), _Tuple>&& std::_Mu<_Arg, false, true>::operator()(const volatile _Arg&, _Tuple&) const volatile [with _Tuple = std::tuple<unsigned char&&, unsigned char*&&, unsigned char&&>; _Arg = std::_Placeholder<1>]	24	static
+tuple:1314:5:>&) [with unsigned int __i = 2; _Elements = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+functional:412:2:std::_Safe_tuple_element_t<(std::is_placeholder<_Tp>::value - 1), _Tuple>&& std::_Mu<_Arg, false, true>::operator()(const volatile _Arg&, _Tuple&) const volatile [with _Tuple = std::tuple<unsigned char&&, unsigned char*&&, unsigned char&&>; _Arg = std::_Placeholder<2>]	24	static
+tuple:1314:5:>&) [with unsigned int __i = 3; _Elements = {I2C*, std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+functional:412:2:std::_Safe_tuple_element_t<(std::is_placeholder<_Tp>::value - 1), _Tuple>&& std::_Mu<_Arg, false, true>::operator()(const volatile _Arg&, _Tuple&) const volatile [with _Tuple = std::tuple<unsigned char&&, unsigned char*&&, unsigned char&&>; _Arg = std::_Placeholder<3>]	24	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = void (I2C::*&)(unsigned char, unsigned char*, unsigned char)]	16	static
+move.h:73:5:constexpr _Tp&& std::forward(typename std::remove_reference<_From>::type&) [with _Tp = I2C*&]	16	static
+invoke.h:89:5:) [with _Callable = void (I2C::*&)(unsigned char, unsigned char*, unsigned char); _Args = {I2C*&, unsigned char, unsigned char*, unsigned char}]	64	static
+tuple:210:17:) [with unsigned int _Idx = 2; _Head = std::_Placeholder<2>; _Tail = {std::_Placeholder<3>}]	24	static
+tuple:79:17:constexpr std::_Head_base<_Idx, _Head, true>::_Head_base(const _Head&) [with unsigned int _Idx = 1; _Head = std::_Placeholder<1>]	16	static
+tuple:1303:5:>&) [with unsigned int __i = 0; _Head = I2C*; _Tail = {std::_Placeholder<1>, std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+tuple:1303:5:>&) [with unsigned int __i = 1; _Head = std::_Placeholder<1>; _Tail = {std::_Placeholder<2>, std::_Placeholder<3>}]	16	static
+tuple:1314:5:>&) [with unsigned int __i = 0; _Elements = {unsigned char&&, unsigned char*&&, unsigned char&&}]	16	static
+tuple:1303:5:>&) [with unsigned int __i = 0; _Head = unsigned char&&; _Tail = {unsigned char*&&, unsigned char&&}]	16	static
+tuple:1326:5:>&&) [with unsigned int __i = 0; _Elements = {unsigned char&&, unsigned char*&&, unsigned char&&}]	16	static
+tuple:1303:5:>&) [with unsigned int __i = 2; _Head = std::_Placeholder<2>; _Tail = {std::_Placeholder<3>}]	16	static
+tuple:1314:5:>&) [with unsigned int __i = 1; _Elements = {unsigned char&&, unsigned char*&&, unsigned char&&}]	16	static
+tuple:1303:5:>&) [with unsigned int __i = 1; _Head = unsigned char*&&; _Tail = {unsigned char&&}]	16	static
+tuple:1326:5:>&&) [with unsigned int __i = 1; _Elements = {unsigned char&&, unsigned char*&&, unsigned char&&}]	16	static
+tuple:1303:5:>&) [with unsigned int __i = 3; _Head = std::_Placeholder<3>; _Tail = {}]	16	static
+tuple:1314:5:>&) [with unsigned int __i = 2; _Elements = {unsigned char&&, unsigned char*&&, unsigned char&&}]	16	static
+tuple:1303:5:>&) [with unsigned int __i = 2; _Head = unsigned char&&; _Tail = {}]	16	static
+tuple:1326:5:>&&) [with unsigned int __i = 2; _Elements = {unsigned char&&, unsigned char*&&, unsigned char&&}]	16	static
+invoke.h:70:5:) [with _Res = void; _MemFun = void (I2C::*&)(unsigned char, unsigned char*, unsigned char); _Tp = I2C*&; _Args = {unsigned char, unsigned char*, unsigned char}]	48	static
+tuple:360:17:constexpr std::_Tuple_impl<_Idx, _Head>::_Tuple_impl(const _Head&) [with unsigned int _Idx = 3; _Head = std::_Placeholder<3>]	16	static
+tuple:79:17:constexpr std::_Head_base<_Idx, _Head, true>::_Head_base(const _Head&) [with unsigned int _Idx = 2; _Head = std::_Placeholder<2>]	16	static
+tuple:79:17:constexpr std::_Head_base<_Idx, _Head, true>::_Head_base(const _Head&) [with unsigned int _Idx = 3; _Head = std::_Placeholder<3>]	16	static

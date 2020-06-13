@@ -14,7 +14,7 @@ MCP4725::MCP4725(i2c_write_t i2c_write,
 {
     uint8_t temp[5];
 
-    temp[0] = mcp4725_cmd_WRITE_DAC_AND_EEPROM | (this->power_down_mode << 1);
+    temp[0] = mcp4725_cmd_WRITE_DAC_AND_EEPROM | (power_down_mode << 1);
     temp[1] = (uint8_t)(dac_value >> 4);
     temp[2] = (uint8_t)(dac_value << 4);
     temp[3] = temp[0];

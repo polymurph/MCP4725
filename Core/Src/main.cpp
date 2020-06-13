@@ -35,10 +35,12 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_I2C1_Init(void);
 
-
-
 int main(void)
 {
+	using namespace std::placeholders;
+
+	uint8_t temp = 0;
+  uint16_t counter = 0;
   HAL_Init();
 
   SystemClock_Config();
@@ -46,24 +48,34 @@ int main(void)
   MX_USART2_UART_Init();
   //MX_I2C1_Init();
 
-  I2C i2c_ch();
+  I2C i2c_ch;
+
+  auto a = std::bind<void>(&I2C::write,
+			  	     &i2c_ch,
+					 _1,
+					 _2,
+					 _3);
 
 
-#if 0
 
-  MCP4725 adc(std::bind(&I2C::write,&i2c_ch,std::placeholders::_1,std::placeholders::_2,std::placeholders::_3),
+
+  #if 1
+
+  MCP4725 adc(a,
 		  	  MCP4725::i2c_addr_0x0,
 			  MCP4725::pwrd_md_1k_ohm,
 			  0x0000,
 			  0x0000);
 
-  adc.set_DAC(0xA5A5);
 
 #endif
   while (1)
   {
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-	  for(uint32_t i = 0; i<500000;i++);
+
+	  adc.set_DAC(counter);
+	  counter += 128;
+	  for(uint32_t i = 0; i<50000;i++);
   }
 }
 
@@ -242,5 +254,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
